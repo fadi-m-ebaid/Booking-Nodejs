@@ -22,7 +22,7 @@ function deleteCity(id)
   
 function updateCity(id,city)
 {
-    var updatedcity = citiesModel.findByIdAndUpdate(id,city, {new:true});
+    var updatedcity = citiesModel.findByIdAndUpdate(id,city,{new:true});
     return updatedcity
 }
 // function countByCity async (req, res, next)

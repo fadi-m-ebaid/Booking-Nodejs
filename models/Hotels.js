@@ -2,21 +2,21 @@ const mongoose = require("mongoose")
 const AddressSchema = new mongoose.Schema({
     Country: {
         type: String,
-        required: true
+        required: false
     },
     City: {
         type: String,
-        required: true
+        required: false
     },
     Street: {
         type: String,
-        required: true
+        required: false
     }
 });
 const FacilitiesSchema = new mongoose.Schema({
     MostPopularFacilities: {
         type: [String],
-        required: true,
+        required: false,
         default:  [
             "Free WiFiii",
             "Airport shuttle (free)",
@@ -27,7 +27,7 @@ const FacilitiesSchema = new mongoose.Schema({
     },
     MoreFacilities: {
         type: Object,
-        required: true,
+        required: false,
         default: {
             "Food & Drink": [
                 "Coffee house on site",
@@ -40,15 +40,15 @@ const FacilitiesSchema = new mongoose.Schema({
 const HotelInfoSchema = new mongoose.Schema({
     HotelPhoneNum: {
         type: [Number],
-        required: true
+        required: false
     },
     Email: {
         type: String,
-        required: true
+        required: false
     },
     Fax: {
         type: String,
-        required: true
+        required: false
     }
 })
 
@@ -61,6 +61,14 @@ const hotelsSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    // city:{
+    //     type: String,
+    //     required: false,
+    // },
+    // country: {
+    //     type: String,
+    //     required: false,
+    // },
     location: {
         type: [Number],
         required: false
@@ -69,34 +77,38 @@ const hotelsSchema = mongoose.Schema({
         type: AddressSchema,
         required: false
     },
-    Facilities: {
-        type: FacilitiesSchema,
-        required: false
-    },
+    // Facilities: {
+    //     type: FacilitiesSchema,
+    //     required: false
+    // },
     SSRoomPrice: {
         type: Number,
         required: false
     },
+    // NofRooms: {
+    //     type: Number,
+    //     required: false
+    // },
     Availability: {
-        type: Boolean,
-        required: false
-    },
-    HotelDescription: {
         type: String,
         required: false
     },
+    // HotelDescription: {
+    //     type: String,
+    //     required: false
+    // },
     HotelImg: {
         type: String,
         required: false
     },
-    HotelImages: {
-        type: [String],
-        required: false
-    },
-    HotelInfo: {
-        type: HotelInfoSchema,
-        required: false
-    },
+    // HotelImages: {
+    //     type: [String],
+    //     required: false
+    // },
+    // HotelInfo: {
+    //     type: HotelInfoSchema,
+    //     required: false
+    // },
 
 })
 var hotelsModel = mongoose.model('Hotels', hotelsSchema)
