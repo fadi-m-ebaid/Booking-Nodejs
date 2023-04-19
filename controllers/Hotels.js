@@ -53,13 +53,14 @@ function updateHotel(id,hotel)
 //     }
 // }
 
-function searchByCity(city_id)
+function searchByCity(city)
 {
-    return hotelsModel.find({city_id})
+    return hotelsModel.find({'Address.City': city});
 }
 
 function countByCity(city_id)
 {
     return hotelsModel.countDocuments({city_id})
 }
-module.exports={createHotel,getHotel,getHotelById,deleteHotel,updateHotel,countByCity,searchByCity}
+
+module.exports={createHotel,getHotel,getHotelById,deleteHotel,updateHotel,countByCity,searchByCity, hotelsModel}
