@@ -86,6 +86,17 @@ router.get('/getcity/:city_id', async (req, res) => {
   }
 });
 
+router.get('/findHotels/:city', async (req, res) => {
+  try {
+    const { city } = req.params;
+    const findHotels = await searchByCity(city)
+    res.json(findHotels);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+
 // router.get("/:id",async(
 //   req,res,next)=>{//done
 //     var{id}=req.params
