@@ -1,12 +1,12 @@
 const mongoose = require("mongoose")
 const RoomSchema = new mongoose.Schema({
     roomCount: Number,
-    // bedType: String,
-    // roomImages: [String],
-    // roomImg: String,
-    // roomFacilities: String,
-    // toiletsNumber: Number,
-    // roomPrice: Number,
+    bedType: String,
+    roomImages: [String],
+    roomImg: String,
+    roomFacilities: String,
+    toiletsNumber: Number,
+    roomPrice: Number,
 })
 const TypeOfRoomsSchema = new mongoose.Schema({
     Single: {

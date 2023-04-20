@@ -8,8 +8,10 @@ function auth(req, res, next) {
                 res.status(401).json({ message: err.message });
             }
             if (decoded) {
+                
                 req.userName = decoded.userName;
                 req.userId = decoded.userId;
+                
                 //req.roleId = decoded.roleId;
                 next();
             }

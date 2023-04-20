@@ -6,7 +6,7 @@ dotenv.config({ path: 'config.env' });
 const mongoose = require('mongoose');
 var authRoute = require('./routes/auth');
 var usersRoute = require('./routes/users');
-
+var adminRoute = require('./routes/admins');
 var tourRoute = require('./routes/Tours')
 var cityRoute = require('./routes/Cities')
 var hotelsRoute = require('./routes/Hotels');
@@ -43,6 +43,7 @@ app.use(express.json());
 app.use('/auth', authRoute);
 app.use('/users', usersRoute);
 app.use('/Cities', cityRoute);
+app.use('/Admins', adminRoute);
 app.use('/Hotels', hotelsRoute);
 app.use('/rooms', roomsRoute);
 

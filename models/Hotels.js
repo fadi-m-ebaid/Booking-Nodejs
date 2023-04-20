@@ -61,6 +61,14 @@ const hotelsSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    // city:{
+    //     type: String,
+    //     required: false,
+    // },
+    // country: {
+    //     type: String,
+    //     required: false,
+    // },
     location: {
         type: [Number],
         required: false
@@ -74,6 +82,10 @@ const hotelsSchema = mongoose.Schema({
         required: false
     },
     SSRoomPrice: {
+        type: Number,
+        required: false
+    },
+    NofRooms: {
         type: Number,
         required: false
     },
