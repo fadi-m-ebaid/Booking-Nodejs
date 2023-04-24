@@ -1,4 +1,4 @@
-const mongoose = require("mongoose")
+const mongoose = require('mongoose');
 // const RoomSchema = new mongoose.Schema({
 //     roomCount: Number,
 //     bedType: String,
@@ -22,16 +22,28 @@ const mongoose = require("mongoose")
 //         type: RoomSchema
 //     }
 // })
-const HotelRoomsSchema = new mongoose.Schema({
-    RoomType: String,
-    BedType: String,
-    RoomFacilities: Object,
-    ToiletsNumber: Number,
-    RoomSize: String,
-   })
+const HotelRoomsSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+    },
+    price: {
+      type: Number,
+      required: true,
+    },
+    maxPeople: {
+      type: Number,
+      required: true,
+    },
+    desc: {
+      type: String,
+      required: true,
+    },
+    roomNumbers: [{ number: Number, unavailableDates: { type: [Date] } }],
+  },
+  { timestamps: true }
+);
 
-var roomsModel = mongoose.model('Rooms', HotelRoomsSchema)
-module.exports = roomsModel
-
-
-
+var roomsModel = mongoose.model('Rooms', HotelRoomsSchema);
+module.exports = roomsModel;
