@@ -5,6 +5,7 @@ const dotenv = require('dotenv')
 dotenv.config({ path: 'config.env' })
 const bcrypt = require('bcrypt')
 var jwt = require('jsonwebtoken');
+const { log } = require('console');
 
 function createUser(User){
 return  usersModel.create(User)
