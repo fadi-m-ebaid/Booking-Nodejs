@@ -11,6 +11,9 @@ var tourRoute = require('./routes/Tours')
 var cityRoute = require('./routes/Cities')
 var hotelsRoute = require('./routes/Hotels');
 var roomsRoute = require('./routes/rooms');
+const multer = require('multer')
+const bodyparser = require('body-parser');
+const path = require('path');
 
 main().catch((err) => console.log(err));
 async function main() {
@@ -19,11 +22,15 @@ async function main() {
 mongoose.connection.on('connected', () => {
   console.log(`connected to mongoDB`);
 });
+
+// app.use(bodyparser.urlencoded({extended:false}))
+// app.use(bodyparser.json())
 app.use(cors());
 mongoose.connection.on('disconnected', () => {
   console.log(`disconnected to mongoDB!`);
 });
 //
+// app.use(express.static('uploads'))
 
 app.get('/', (req, res) => {
   res.send('first request');
@@ -46,6 +53,7 @@ app.use('/Cities', cityRoute);
 app.use('/Admins', adminRoute);
 app.use('/Hotels', hotelsRoute);
 app.use('/rooms', roomsRoute);
+
 
 
 app.use('*', (req, res, next) => {

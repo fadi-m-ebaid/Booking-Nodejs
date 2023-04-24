@@ -1,5 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
+const bodyparser = require('body-parser');
+const path = require('path');
+
 
 const hotelsModel = require('../models/Hotels');
 var {
@@ -12,13 +16,34 @@ var {
   searchByCity,
 } = require('../controllers/Hotels');
 
-router.post('/', async (req, res, next) => {
+// var storage = multer.diskStorage({
+//   destination:function(req,file,cb){
+//     cb(null,"uploads");
+//   },
+//   filename: function (req,file,cb){
+//     cb(null, Date.now() + path.extname(file.originalname));
+//   }
+// })
+
+// var upload = multer({storage:storage}).single('file')
+
+
+
+router.post('/', async (req, res) => {
   //done
-  var hotel = req.body;
+  // var hotel = req.body;
+  // upload(req,res, (err)=>{
+  //   if(err){
+  //     console.log(err)
+  //   }
+  //   console.log(req.file.path)
+  // })
+
   try {
     var savedHotel = await createHotel(hotel);
     res.status(201).json(savedHotel);
   } catch (err) {
+    console.log(err)
     res.status(422).json({ message: err.message });
   }
 });
