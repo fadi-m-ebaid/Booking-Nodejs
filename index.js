@@ -5,8 +5,8 @@ const dotenv = require('dotenv');
 dotenv.config({ path: 'config.env' });
 const mongoose = require('mongoose');
 
-//const fileRoutes = require('./routes/upload.js');
-
+// const fileRoutes = require('./routes/upload.js');
+// const path = require('path');
 
 var authRoute = require('./routes/auth');
 var usersRoute = require('./routes/users');

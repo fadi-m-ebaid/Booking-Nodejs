@@ -1,6 +1,6 @@
-
-// const SingleFile = require('../models/SingleFile');
-// const MultipleFile = require('../models/MultipleFile');
+// 'use strict';
+// const SingleFile = require('../models/singlefile.module');
+// const MultipleFile = require('../models/multiplefile.module');
 
 // const singleFileUpload = async (req, res, next) => {
 //     try{
