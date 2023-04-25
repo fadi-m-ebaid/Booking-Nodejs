@@ -1,5 +1,5 @@
 'use strict';
-const MultipleFile = require('../models/multiplefile.module');
+// const MultipleFile = require('../models/multiplefile.module');
 
 const express = require('express');
 const router = express.Router();
@@ -40,62 +40,62 @@ var {
 // });
 
 //CREATE PRODUCTOR
-exports.createHotel = (req, res) => {
-  console.log(req.files);
-  const filesPath = [];
-  const filesArray = [];
-  req.files.forEach((element) => {
-    const file = {
-      fileName: element.originalname,
-      filePath: element.path,
-      fileType: element.mimetype,
-      fileSize: fileSizeFormatter(element.size, 2), //size be the half
-    };
-    filesArray.push(file);
-    filesPath.push(element.path);
-  });
-  const multipleFiles = new MultipleFile({
-    files: filesArray,
-  });
-  multipleFiles.save();
-  const totalprice =
-    req.body.SSRoomPrice - (req.body.SSRoomPrice * req.body.discount) / 100;
-  const hotelAlreadyExists = hotelsModel.findOne({ name: req.name });
-  if (hotelAlreadyExists.name) {
-    res.status(404).send({ message: 'Hotel already exists' });
-  } else {
-    console.log(req.body);
-    const newHotel = new Hotels({
-      name: req.body.name,
-      // arname: req.body.arname,//
-      // sellerId: req.user.id,
-      RoomID: req.RoomID,
-      imagePath: filesPath, //
-      location: req.body.location,
-      Address: req.body.Address,
-      Facilities: req.body.Facilities,
-      Availability: req.body.Availability,
-      // arcategory: req.body.arcategory,//
-      HotelDescription: req.body.HotelDescription,
-      // arsubcategory: req.body.arsubcategory,//
-      NofRooms: req.body.NofRooms,
-      // ardescription: req.body.description,//
-      HotelInfo: req.body.HotelInfo,
-      SSRoomPrice: req.body.SSRoomPrice,
-    });
+// exports.createHotel = (req, res) => {
+//   console.log(req.files);
+//   const filesPath = [];
+//   const filesArray = [];
+//   req.files.forEach((element) => {
+//     const file = {
+//       fileName: element.originalname,
+//       filePath: element.path,
+//       fileType: element.mimetype,
+//       fileSize: fileSizeFormatter(element.size, 2), //size be the half
+//     };
+//     filesArray.push(file);
+//     filesPath.push(element.path);
+//   });
+//   const multipleFiles = new MultipleFile({
+//     files: filesArray,
+//   });
+//   multipleFiles.save();
+//   const totalprice =
+//     req.body.SSRoomPrice - (req.body.SSRoomPrice * req.body.discount) / 100;
+//   const hotelAlreadyExists = hotelsModel.findOne({ name: req.name });
+//   if (hotelAlreadyExists.name) {
+//     res.status(404).send({ message: 'Hotel already exists' });
+//   } else {
+//     console.log(req.body);
+//     const newHotel = new Hotels({
+//       name: req.body.name,
+//       // arname: req.body.arname,//
+//       // sellerId: req.user.id,
+//       RoomID: req.RoomID,
+//       imagePath: filesPath, //
+//       location: req.body.location,
+//       Address: req.body.Address,
+//       Facilities: req.body.Facilities,
+//       Availability: req.body.Availability,
+//       // arcategory: req.body.arcategory,//
+//       HotelDescription: req.body.HotelDescription,
+//       // arsubcategory: req.body.arsubcategory,//
+//       NofRooms: req.body.NofRooms,
+//       // ardescription: req.body.description,//
+//       HotelInfo: req.body.HotelInfo,
+//       SSRoomPrice: req.body.SSRoomPrice,
+//     });
     //////////////////
-    console.log(newHotel, 'yyyyy');
-    newHotel
-      .save()
-      .then((savedHotel) => {
-        console.log(savedHotel);
-        res.status(200).send(savedHotel);
-      })
-      .catch((err) => {
-        res.status(401).send({ message: 'something wrong' });
-      });
-  }
-};
+//     console.log(newHotel, 'yyyyy');
+//     newHotel
+//       .save()
+//       .then((savedHotel) => {
+//         console.log(savedHotel);
+//         res.status(200).send(savedHotel);
+//       })
+//       .catch((err) => {
+//         res.status(401).send({ message: 'something wrong' });
+//       });
+//   }
+// };
 
 router.get('/', async (req, res, next) => {
   //done

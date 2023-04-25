@@ -5,8 +5,8 @@ const dotenv = require('dotenv');
 dotenv.config({ path: 'config.env' });
 const mongoose = require('mongoose');
 
-const fileRoutes = require('./routes/upload.js');
-const path = require('path');
+// const fileRoutes = require('./routes/upload.js');
+// const path = require('path');
 
 var authRoute = require('./routes/auth');
 var usersRoute = require('./routes/users');
@@ -43,8 +43,8 @@ app.listen(PORT, () => {
 });
 
 app.use(express.json());
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.use('/', fileRoutes.routes);
+// app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// app.use('/', fileRoutes.routes);
 // app.use('/api', fileRoutes.routes);
 
 app.use('/auth', authRoute);
