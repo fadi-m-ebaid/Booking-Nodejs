@@ -1,38 +1,33 @@
-const fs=require('fs');
-var express=require('express') 
-const hotelsModel=require('../models/Hotels')
-const dotenv = require('dotenv')
-dotenv.config({ path: 'config.env' })
-const citiesModel=require('../models/Cities')
+const fs = require('fs');
+var express = require('express');
+const hotelsModel = require('../models/Hotels');
+const dotenv = require('dotenv');
+dotenv.config({ path: 'config.env' });
+const citiesModel = require('../models/Cities');
 
-function createHotel(hotel){
-return  hotelsModel.create(hotel)
-}
-   
-function getHotel()
-{
-    return hotelsModel.find();
-}
-function getHotelById(id)
-{
-    return hotelsModel.findById(id);
+function createHotel(hotel) {
+  return hotelsModel.create(hotel).populate('rooms');
 }
 
-   
-function deleteHotel(id)
-{
-    return hotelsModel.findByIdAndDelete(id);
+function getHotel() {
+  return hotelsModel.find().populate('rooms');
 }
-  
-function updateHotel(id,hotel)
-{
-    return hotelsModel.findByIdAndUpdate(id,hotel);
+function getHotelById(id) {
+  return hotelsModel.findById(id).populate('rooms');
+}
+
+function deleteHotel(id) {
+  return hotelsModel.findByIdAndDelete(id).populate('rooms');
+}
+
+function updateHotel(id, hotel) {
+  return hotelsModel.findByIdAndUpdate(id, hotel).populate('rooms');
 }
 // function countByCity async (req, res, next)
 // {
-//     const city   
+//     const city
 //     try
-//     { await 
+//     { await
 //     }
 //     return hotelsModel.findByIdAndUpdate(id,hotel);
 // }
@@ -53,14 +48,21 @@ function updateHotel(id,hotel)
 //     }
 // }
 
-function searchByCity(city)
-{
-    return hotelsModel.find({'Address.City': city});
+function searchByCity(city) {
+  return hotelsModel.find({ 'Address.City': city }).populate('rooms');
 }
 
-function countByCity(city_id)
-{
-    return hotelsModel.countDocuments({city_id})
+function countByCity(city_id) {
+  return hotelsModel.countDocuments({ city_id }).populate('rooms');
 }
 
-module.exports={createHotel,getHotel,getHotelById,deleteHotel,updateHotel,countByCity,searchByCity, hotelsModel}
+module.exports = {
+  createHotel,
+  getHotel,
+  getHotelById,
+  deleteHotel,
+  updateHotel,
+  countByCity,
+  searchByCity,
+  hotelsModel,
+};

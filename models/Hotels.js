@@ -209,6 +209,14 @@ const hotelsSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    // city:{
+    //     type: String,
+    //     required: false,
+    // },
+    // country: {
+    //     type: String,
+    //     required: false,
+    // },
     location: {
         type: [Number],
         required: false
@@ -241,6 +249,10 @@ const hotelsSchema = mongoose.Schema({
         type: Number,
         required: false
     },
+    NofRooms: {
+        type: Number,
+        required: false
+    },
     Availability: {
         type: Boolean,
         required: false
@@ -254,10 +266,14 @@ const hotelsSchema = mongoose.Schema({
         type: String,
         required: false
     },
-    HotelImages: {
+    imagePath: {
         type: [String],
-        required: false
+        required: true
     },
+    // HotelImages: {
+    //     type: [String],
+    //     required: false
+    // },
     HotelInfo: {
         HotelPhoneNum: {
             type: [Number],
@@ -272,6 +288,13 @@ const hotelsSchema = mongoose.Schema({
             required: false
         }
     },
+    RoomID:{
+        // type: mongoose.SchemaTypes.ObjectId, ref: 'Rooms'
+        RoomType:{
+            type: String,
+            required: false
+        }
+    }
 
 })
 

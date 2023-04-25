@@ -4,11 +4,15 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 dotenv.config({ path: 'config.env' });
 const mongoose = require('mongoose');
+
+const fileRoutes = require('./routes/upload.js');
+const path = require('path');
+
 var authRoute = require('./routes/auth');
 var usersRoute = require('./routes/users');
 var adminRoute = require('./routes/admins');
-var tourRoute = require('./routes/Tours')
-var cityRoute = require('./routes/Cities')
+var tourRoute = require('./routes/Tours');
+var cityRoute = require('./routes/Cities');
 var hotelsRoute = require('./routes/Hotels');
 var roomsRoute = require('./routes/rooms');
 const multer = require('multer')
@@ -46,6 +50,9 @@ app.listen(PORT, () => {
 });
 
 app.use(express.json());
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/', fileRoutes.routes);
+// app.use('/api', fileRoutes.routes);
 
 app.use('/auth', authRoute);
 app.use('/users', usersRoute);
