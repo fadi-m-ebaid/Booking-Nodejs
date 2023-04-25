@@ -3,7 +3,7 @@
 const express = require('express');
 const {upload} = require('../helpers/filehelper');
 const {singleFileUpload, multipleFileUpload,
-    getallSingleFiles, getallMultipleFiles} = require('../controller/uploadFile.controller');
+    getallSingleFiles, getallMultipleFiles} = require('../controllers/upLoadFile');
 const router = express.Router();
 
 

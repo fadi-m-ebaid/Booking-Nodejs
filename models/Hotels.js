@@ -266,14 +266,14 @@ const hotelsSchema = mongoose.Schema({
         type: String,
         required: false
     },
-    imagePath: {
-        type: [String],
-        required: true
-    },
-    // HotelImages: {
+    // imagePath: {
     //     type: [String],
-    //     required: false
+    //     required: true
     // },
+    HotelImages: {
+        type: [String],
+        required: false
+    },
     HotelInfo: {
         HotelPhoneNum: {
             type: [Number],
@@ -288,13 +288,13 @@ const hotelsSchema = mongoose.Schema({
             required: false
         }
     },
-    RoomID:{
-        // type: mongoose.SchemaTypes.ObjectId, ref: 'Rooms'
-        RoomType:{
-            type: String,
-            required: false
-        }
-    }
+    rooms: {
+        type: [mongoose.SchemaTypes.ObjectId],
+        ref: "Rooms",
+    },
+
+    SingleRoomPrice: Number,
+    DoubleRoomPrice: Number,
 
 })
 
