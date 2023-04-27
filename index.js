@@ -4,7 +4,9 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 dotenv.config({ path: 'config.env' });
 const mongoose = require('mongoose');
-
+// Todo: adding stripe key
+// const stripe = require ('stripe')('');
+// const uuid = require ('uuid/v4')
 // const fileRoutes = require('./routes/upload.js');
 // const path = require('path');
 
