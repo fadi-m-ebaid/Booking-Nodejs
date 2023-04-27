@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const UsersModel = require('../models/users');
+const usersModel = require('../models/users');
 var {
   login,
   createUser,
@@ -67,7 +67,19 @@ router.patch('/:id', async (req, res) => {
     res.json({ message: err.message });
   }
 });
+router.patch('/changeactivity/:id', async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const user = await usersModel.findById(id).select('isActive')
+    const updatedUser = await usersModel.findByIdAndUpdate(id, {
+      isActive: !user.isActive
+    });
 
+    res.json(updatedUser);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
 router.post('/login', login);
 
 // export default router;

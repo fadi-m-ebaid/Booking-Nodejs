@@ -1,4 +1,6 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
+const roomsModel = require("../models/Rooms");
+
 // const AddressSchema = new mongoose.Schema({
 //     Country: {
 //         type: String,
@@ -254,10 +256,6 @@ const hotelsSchema = mongoose.Schema({
     type: String,
     required: false,
   },
-  // imagePath: {
-  //     type: [String],
-  //     required: true
-  // },
   HotelImages: {
     type: [String],
     required: false,
@@ -276,14 +274,14 @@ const hotelsSchema = mongoose.Schema({
       required: false,
     },
   },
-  rooms: {
-    type: [mongoose.SchemaTypes.ObjectId],
-    ref: 'Rooms',
-  },
+  hotelrooms:
+  [{roomtype:{type: mongoose.SchemaTypes.ObjectId,ref: "Rooms"},
+  Name:String,
+  RoomPrice: Number,
+   RoomCount: Number,
+   roomNumbers: [{ Price: Number, unavailableDates: {type: [Date]}}],  }]
+},
+);
 
-  SingleRoomPrice: Number,
-  DoubleRoomPrice: Number,
-});
-
-var hotelsModel = mongoose.model('Hotels', hotelsSchema);
+var hotelsModel = mongoose.model("Hotels", hotelsSchema);
 module.exports = hotelsModel;

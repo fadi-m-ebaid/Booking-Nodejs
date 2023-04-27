@@ -20,15 +20,15 @@ var adminsSchema = mongoose.Schema(
         type: String,
         required: false,
         unique: false,
-        // validate: {
-        //     validator: function (emailValue) {
-        //         return /^[a-zA-Z0-9._%+-]{3,20}(@)(gmail|yahoo|outlook)(.com)$/.test(emailValue);
-        //     },
-        //     message: props => {
-        //         console.log(props);
-        //         return `${props.value} is not a valid email !`
-        //     }
-        // }
+        validate: {
+            validator: function (emailValue) {
+                return /^[a-zA-Z0-9._%+-]{3,20}(@)(gmail|yahoo|outlook)(.com)$/.test(emailValue);
+            },
+            message: props => {
+                console.log(props);
+                return `${props.value} is not a valid email !`
+            }
+        }
     },
     
     adminAddress: {

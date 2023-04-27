@@ -175,6 +175,32 @@ router.patch('/:id', async (req, res) => {
     res.json({ message: err.message });
   }
 });
+// router.put('/availability/:id', async (req, res, next) => {
+//   //done
+//   // var room = req.body;
+//   try {
+//     await hotelsModel.updateOne(
+//       { 'hotelrooms.roomNumbers._id': req.params.id },
+//       { $push: {'hotelrooms.roomNumbers.$.unavailableDates': req.body.dates } }
+//     );
+//     res.status(200).json('Room status has been updated.');
+//   } catch (err) {
+//     res.status(422).json({ message: err.message });
+//   }
+// });
+router.put('/availability/:id', async (req, res, next) => {
+  try {
+    await hotelsModel.updateOne(
+      { 'hotelrooms.roomNumbers._id': req.params.id },
+      { $push: { 'hotelrooms.$[room].roomNumbers.$[number].unavailableDates': req.body.dates } },
+      { arrayFilters: [{ 'room.roomNumbers._id': req.params.id }, { 'number._id': req.params.id }] }
+    );
+    res.status(200).json('Room status has been updated.');
+  } catch (err) {
+    res.status(422).json({ message: err.message });
+  }
+});
+
 router.get('/searchcity/:city_id', async (req, res) => {
   try {
     var { city_id } = req.params;

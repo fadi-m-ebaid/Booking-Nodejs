@@ -5,23 +5,28 @@ const dotenv = require('dotenv');
 dotenv.config({ path: 'config.env' });
 const citiesModel = require('../models/Cities');
 
-function createHotel(hotel) {
-  return hotelsModel.create(hotel).populate('rooms');
+function createHotel(hotel){
+return  hotelsModel.create(hotel)
+}
+   
+function getHotel()
+{
+    return hotelsModel.find().populate("hotelrooms");
+}
+function getHotelById(id)
+{
+    return hotelsModel.findById(id).populate("hotelrooms");
 }
 
-function getHotel() {
-  return hotelsModel.find().populate('rooms');
+   
+function deleteHotel(id)
+{
+    return hotelsModel.findByIdAndDelete(id).populate("hotelrooms");
 }
-function getHotelById(id) {
-  return hotelsModel.findById(id).populate('rooms');
-}
-
-function deleteHotel(id) {
-  return hotelsModel.findByIdAndDelete(id).populate('rooms');
-}
-
-function updateHotel(id, hotel) {
-  return hotelsModel.findByIdAndUpdate(id, hotel).populate('rooms');
+  
+function updateHotel(id,hotel)
+{
+    return hotelsModel.findByIdAndUpdate(id,hotel).populate("hotelrooms");
 }
 // function countByCity async (req, res, next)
 // {
@@ -48,12 +53,15 @@ function updateHotel(id, hotel) {
 //     }
 // }
 
-function searchByCity(city) {
-  return hotelsModel.find({ 'Address.City': city }).populate('rooms');
+function searchByCity(city)
+{
+    
+    return hotelsModel.find({'Address.City': city});
 }
 
-function countByCity(city_id) {
-  return hotelsModel.countDocuments({ city_id }).populate('rooms');
+function countByCity(city_id)
+{
+    return hotelsModel.countDocuments({city_id}.populate("hotelrooms"))
 }
 
 module.exports = {

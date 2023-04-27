@@ -36,6 +36,10 @@ var usersSchema = mongoose.Schema(
     },
     dob: {
         type: Date,
+    },
+    isActive:
+    {
+      type: Boolean,
     }
     // roleId: {
     //     type: mongoose.SchemaType.ObjectId,
