@@ -1,9 +1,9 @@
-const fs=require('fs');
-var express=require('express') 
-const hotelsModel=require('../models/Hotels')
-const dotenv = require('dotenv')
-dotenv.config({ path: 'config.env' })
-const citiesModel=require('../models/Cities')
+const fs = require('fs');
+var express = require('express');
+const hotelsModel = require('../models/Hotels');
+const dotenv = require('dotenv');
+dotenv.config({ path: 'config.env' });
+const citiesModel = require('../models/Cities');
 
 function createHotel(hotel){
 return  hotelsModel.create(hotel)
@@ -30,9 +30,9 @@ function updateHotel(id,hotel)
 }
 // function countByCity async (req, res, next)
 // {
-//     const city   
+//     const city
 //     try
-//     { await 
+//     { await
 //     }
 //     return hotelsModel.findByIdAndUpdate(id,hotel);
 // }
@@ -64,4 +64,13 @@ function countByCity(city_id)
     return hotelsModel.countDocuments({city_id}.populate("hotelrooms"))
 }
 
-module.exports={createHotel,getHotel,getHotelById,deleteHotel,updateHotel,countByCity,searchByCity, hotelsModel}
+module.exports = {
+  createHotel,
+  getHotel,
+  getHotelById,
+  deleteHotel,
+  updateHotel,
+  countByCity,
+  searchByCity,
+  hotelsModel,
+};

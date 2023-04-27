@@ -63,3 +63,5 @@ module.exports = roomsModel
 
 
 
+var roomsModel = mongoose.model('Rooms', HotelRoomsSchema);
+module.exports = roomsModel;
