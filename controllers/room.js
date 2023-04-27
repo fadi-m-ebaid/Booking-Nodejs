@@ -25,4 +25,6 @@ function updateroom(id,room)
     return roomsModel.findByIdAndUpdate(id,room);
 }
 
-module.exports={createroom,getroom,deleteroom,updateroom}
+module.exports={createroom,getroom,deleteroom,updateroom
+    // updateRoomAvailability
+}

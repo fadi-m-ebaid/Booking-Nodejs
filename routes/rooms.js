@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const roomsModel=require('../models/Rooms')
+
  var {createroom,getroom,deleteroom,updateroom}=require('../controllers/room')
 
 
@@ -17,7 +18,19 @@ const roomsModel=require('../models/Rooms')
           res.status(422).json({message:err.message}) 
         }
         })
-
+router.put('/availability/:id', async (req, res, next) => {
+  //done
+  // var room = req.body;
+  try {
+    await roomsModel.updateOne(
+      { 'roomNumbers._id': req.params.id },
+      { $push: {'roomNumbers.$.unavailableDates': req.body.dates } }
+    );
+    res.status(200).json('Room status has been updated.');
+  } catch (err) {
+    res.status(422).json({ message: err.message });
+  }
+});
 
 
         router.get("/",async(

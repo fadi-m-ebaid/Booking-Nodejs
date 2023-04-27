@@ -42,7 +42,7 @@ async function login(req, res) {
 
         if (validPassword) {
             var token = jwt.sign({
-                adminId: admin._id,
+             
                 adminName: admin.adminName,
                 //roleId: admin.roleId
             }, process.env.SECRET, { expiresIn: '4h' });

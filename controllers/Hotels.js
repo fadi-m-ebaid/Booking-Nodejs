@@ -11,22 +11,22 @@ return  hotelsModel.create(hotel)
    
 function getHotel()
 {
-    return hotelsModel.find();
+    return hotelsModel.find().populate("hotelrooms");
 }
 function getHotelById(id)
 {
-    return hotelsModel.findById(id);
+    return hotelsModel.findById(id).populate("hotelrooms");
 }
 
    
 function deleteHotel(id)
 {
-    return hotelsModel.findByIdAndDelete(id);
+    return hotelsModel.findByIdAndDelete(id).populate("hotelrooms");
 }
   
 function updateHotel(id,hotel)
 {
-    return hotelsModel.findByIdAndUpdate(id,hotel);
+    return hotelsModel.findByIdAndUpdate(id,hotel).populate("hotelrooms");
 }
 // function countByCity async (req, res, next)
 // {
@@ -55,12 +55,13 @@ function updateHotel(id,hotel)
 
 function searchByCity(city)
 {
+    
     return hotelsModel.find({'Address.City': city});
 }
 
 function countByCity(city_id)
 {
-    return hotelsModel.countDocuments({city_id})
+    return hotelsModel.countDocuments({city_id}.populate("hotelrooms"))
 }
 
 module.exports={createHotel,getHotel,getHotelById,deleteHotel,updateHotel,countByCity,searchByCity, hotelsModel}

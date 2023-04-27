@@ -1,4 +1,6 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
+const roomsModel = require("../models/Rooms");
+
 // const AddressSchema = new mongoose.Schema({
 //     Country: {
 //         type: String,
@@ -51,7 +53,6 @@ const mongoose = require("mongoose")
 //         required: false
 //     }
 // })
-
 
 // const hotelsSchema = mongoose.Schema({
 //     CityId: {
@@ -113,13 +114,6 @@ const mongoose = require("mongoose")
 // })
 // var hotelsModel = mongoose.model('Hotels', hotelsSchema)
 // module.exports = hotelsModel
-
-
-
-
-
-
-
 
 // const AddressSchema = new mongoose.Schema({
 
@@ -197,100 +191,97 @@ const mongoose = require("mongoose")
 
 // })
 
-
-
-
-
 const hotelsSchema = mongoose.Schema({
-    // CityId: {
-    //     type: mongoose.SchemaTypes.ObjectId, ref: 'Cities'
-    // },
-    name: {
-        type: String,
-        required: true,
+  // CityId: {
+  //     type: mongoose.SchemaTypes.ObjectId, ref: 'Cities'
+  // },
+  name: {
+    type: String,
+    required: true,
+  },
+  // city:{
+  //     type: String,
+  //     required: false,
+  // },
+  // country: {
+  //     type: String,
+  //     required: false,
+  // },
+  location: {
+    type: [Number],
+    required: false,
+  },
+  Address: {
+    Country: {
+      type: String,
+      required: false,
     },
-    // city:{
-    //     type: String,
-    //     required: false,
-    // },
-    // country: {
-    //     type: String,
-    //     required: false,
-    // },
-    location: {
-        type: [Number],
-        required: false
+    City: {
+      type: String,
+      required: false,
     },
-    Address: {
-        Country: {
-            type: String,
-            required: false
-        },
-        City: {
-            type: String,
-            required: false
-        },
-        Street: {
-            type: String,
-            required: true
-        }
+    Street: {
+      type: String,
+      required: true,
     },
-    Facilities: {
-        MostPopularFacilities: {
-            type: [String],
-            required: false
-        },
-        MoreFacilities: {
-            type: Object,
-            required: false
-        }
+  },
+  Facilities: {
+    MostPopularFacilities: {
+      type: [String],
+      required: false,
     },
-    SSRoomPrice: {
-        type: Number,
-        required: false
+    MoreFacilities: {
+      type: Object,
+      required: false,
     },
-    NofRooms: {
-        type: Number,
-        required: false
-    },
-    Availability: {
-        type: Boolean,
-        required: false
-    },
+  },
+  SSRoomPrice: {
+    type: Number,
+    required: false,
+  },
+  NofRooms: {
+    type: Number,
+    required: false,
+  },
+  Availability: {
+    type: Boolean,
+    required: false,
+  },
 
-    HotelDescription: {
-        type: String,
-        required: false
+  HotelDescription: {
+    type: String,
+    required: false,
+  },
+  HotelImg: {
+    type: String,
+    required: false,
+  },
+  HotelImages: {
+    type: [String],
+    required: false,
+  },
+  HotelInfo: {
+    HotelPhoneNum: {
+      type: [Number],
+      required: false,
     },
-    HotelImg: {
-        type: String,
-        required: false
+    Email: {
+      type: String,
+      required: false,
     },
-    HotelImages: {
-        type: [String],
-        required: false
+    Fax: {
+      type: String,
+      required: false,
     },
-    HotelInfo: {
-        HotelPhoneNum: {
-            type: [Number],
-            required: false
-        },
-        Email: {
-            type: String,
-            required: false
-        },
-        Fax: {
-            type: String,
-            required: false
-        }
-    },
+  },
+  hotelrooms:
+  [{roomtype:{type: mongoose.SchemaTypes.ObjectId,ref: "Rooms"},
+  Name:String,
+  RoomPrice: Number,
+   RoomCount: Number,
+   roomNumbers: [{ Price: Number, unavailableDates: {type: [Date]}}],  }]
+},
+);
 
-})
-
-var hotelsModel = mongoose.model('Hotels', hotelsSchema)
-module.exports = hotelsModel
-
-
-
-
-
+var hotelsModel = mongoose.model("Hotels", hotelsSchema);
+module.exports = hotelsModel;
