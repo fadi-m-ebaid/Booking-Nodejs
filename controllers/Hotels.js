@@ -61,7 +61,7 @@ function searchByCity(city)
 
 function countByCity(city_id)
 {
-    return hotelsModel.countDocuments({city_id}.populate("hotelrooms"))
+    return hotelsModel.countDocuments(city_id).populate("CityId")
 }
 
 module.exports = {

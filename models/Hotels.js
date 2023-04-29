@@ -192,9 +192,9 @@ const roomsModel = require("../models/Rooms");
 // })
 
 const hotelsSchema = mongoose.Schema({
-  // CityId: {
-  //     type: mongoose.SchemaTypes.ObjectId, ref: 'Cities'
-  // },
+  CityId: {
+      type: mongoose.SchemaTypes.ObjectId, ref: 'Cities'
+  },
   name: {
     type: String,
     required: true,

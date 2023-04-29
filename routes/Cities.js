@@ -54,16 +54,16 @@ router.patch("/:id",async(req,res)=>{      //update field by patch/done
    res.json({message:err.message})
    }
   })
-//    router.get("/searchcity/:city_id",async(req,res)=>{
-//   try{
-//    var {city_id}=req.params
-//    var getbycity = await searchByCity(city_id)
-//    res.json(getbycity)
-//   }
-//   catch(err){
-//     res.json({message:err.message})
-//   }
-//    })
+   router.get("/searchcity/:city_id",async(req,res)=>{
+  try{
+   var {city_id}=req.params
+   var getbycity = await searchByCity(city_id)
+   res.json(getbycity)
+  }
+  catch(err){
+    res.json({message:err.message})
+  }
+   })
 
 //    router.get("/getcity/:city_id",async(req,res)=>{
 //     try{
