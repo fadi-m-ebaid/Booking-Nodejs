@@ -4,9 +4,8 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 dotenv.config({ path: 'config.env' });
 const mongoose = require('mongoose');
-// Todo: adding stripe key
-// const stripe = require ('stripe')('');
-// const uuid = require ('uuid/v4')
+const stripe = require ('stripe')('pk_test_51N1oJNAB87pT1j76v4i0wDIhdsHyVzCkxlSwF4CcqbFA9MkLuIhHn76EU0GkDcnRPy1SlqmcaC9ztybp0zNste0700MKFBzuRL');
+const uuid = require ('uuid')
 // const fileRoutes = require('./routes/upload.js');
 // const path = require('path');
 
@@ -17,6 +16,8 @@ var tourRoute = require('./routes/Tours');
 var cityRoute = require('./routes/Cities');
 var hotelsRoute = require('./routes/Hotels');
 var roomsRoute = require('./routes/rooms');
+var bookingRout = require('./routes/booking')
+var paymentRout = require ('./routes/payment')
 const multer = require('multer')
 const bodyparser = require('body-parser');
 const path = require('path');
@@ -62,6 +63,8 @@ app.use('/Cities', cityRoute);
 app.use('/Admins', adminRoute);
 app.use('/Hotels', hotelsRoute);
 app.use('/rooms', roomsRoute);
+app.use('/booking', bookingRout);
+app.use('/booking/payment', paymentRout)
 
 app.use('*', (req, res, next) => {
   res.status(404).end('not found');
