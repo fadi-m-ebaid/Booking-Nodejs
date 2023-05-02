@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const bcrypt = require('bcrypt')
 
 const AdminsModel = require('../models/Admins');
 var {
@@ -63,6 +64,12 @@ router.patch('/:id', async (req, res) => {
     var Admin = req.body;
     var updatedAdmin = await updateAdmin(id, Admin);
     res.json(updatedAdmin);
+    
+    var password = req.body.adminPassword
+    const salt = bcrypt.genSaltSync(10);
+    const hashedPassword = bcrypt.hashSync(password, salt);
+    return AdminsModel.findByIdAndUpdate(id,{adminPassword:hashedPassword})
+
   } catch (err) {
     res.json({ message: err.message });
   }

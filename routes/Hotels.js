@@ -3,6 +3,10 @@
 
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
+const bodyparser = require('body-parser');
+const path = require('path');
+
 
 const hotelsModel = require('../models/Hotels');
 const citiesModel = require('../models/Cities');

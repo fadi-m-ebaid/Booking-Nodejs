@@ -4,7 +4,8 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 dotenv.config({ path: 'config.env' });
 const mongoose = require('mongoose');
-
+const stripe = require ('stripe')('pk_test_51N1oJNAB87pT1j76v4i0wDIhdsHyVzCkxlSwF4CcqbFA9MkLuIhHn76EU0GkDcnRPy1SlqmcaC9ztybp0zNste0700MKFBzuRL');
+const uuid = require ('uuid')
 // const fileRoutes = require('./routes/upload.js');
 // const path = require('path');
 
@@ -17,6 +18,12 @@ var hotelsRoute = require('./routes/Hotels');
 var roomsRoute = require('./routes/rooms');
 var activitiesRoute = require('./routes/activities');
 var tourRoute = require('./routes/Tours');
+var bookingRout = require('./routes/booking')
+var paymentRout = require ('./routes/payment')
+const multer = require('multer')
+const bodyparser = require('body-parser');
+const path = require('path');
+
 main().catch((err) => console.log(err));
 async function main() {
   await mongoose.connect(process.env.MONGO);
@@ -24,11 +31,15 @@ async function main() {
 mongoose.connection.on('connected', () => {
   console.log(`connected to mongoDB`);
 });
+
+// app.use(bodyparser.urlencoded({extended:false}))
+// app.use(bodyparser.json())
 app.use(cors());
 mongoose.connection.on('disconnected', () => {
   console.log(`disconnected to mongoDB!`);
 });
 //
+// app.use(express.static('uploads'))
 
 app.get('/', (req, res) => {
   res.send('first request');
@@ -56,6 +67,8 @@ app.use('/Hotels', hotelsRoute);
 app.use('/rooms', roomsRoute);
 app.use('/activities', activitiesRoute);
 app.use('/tours', tourRoute);
+app.use('/booking', bookingRout);
+app.use('/booking/payment', paymentRout)
 
 app.use('*', (req, res, next) => {
   res.status(404).end('not found');
