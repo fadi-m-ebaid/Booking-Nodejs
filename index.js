@@ -15,7 +15,8 @@ var tourRoute = require('./routes/Tours');
 var cityRoute = require('./routes/Cities');
 var hotelsRoute = require('./routes/Hotels');
 var roomsRoute = require('./routes/rooms');
-
+var activitiesRoute = require('./routes/activities');
+var tourRoute = require('./routes/Tours');
 main().catch((err) => console.log(err));
 async function main() {
   await mongoose.connect(process.env.MONGO);
@@ -53,6 +54,8 @@ app.use('/Cities', cityRoute);
 app.use('/Admins', adminRoute);
 app.use('/Hotels', hotelsRoute);
 app.use('/rooms', roomsRoute);
+app.use('/activities', activitiesRoute);
+app.use('/tours', tourRoute);
 
 app.use('*', (req, res, next) => {
   res.status(404).end('not found');

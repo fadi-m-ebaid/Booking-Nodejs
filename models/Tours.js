@@ -8,26 +8,26 @@ const TicketSchema = mongoose.Schema({
         type: Number
     }
 })
-const ToursSchema = mongoose.Schema({
-    Hotel: {
-        type: mongoose.SchemaTypes.ObjectId, ref: 'Hotels',
-        required: true
-    },
+const toursSchema = mongoose.Schema({
+    // Hotel: {
+    //     type: mongoose.SchemaTypes.ObjectId, ref: 'Hotels',
+    //     required: false
+    // },
     City: {
         type: mongoose.SchemaTypes.ObjectId, ref: 'Cities',
-        required: true
+        required: false
     },
     Name: {
         type: String,
-        required: true
+        required: false
     },
     Subtitle: {
         type: String,
-        required: true
+        required: false
     },
     TourDescription: {
         type: String,
-        required: true
+        required: false
     },
     TourImages: {
         type: [String]
@@ -37,15 +37,23 @@ const ToursSchema = mongoose.Schema({
     },
     Duration: {
         type: Number,
-        required: true
+        required: false
     },
     TourAvailability: {
         type: Boolean,
-        required: true
+        required: false
     },
     TicketPrice: {
-        type: TicketSchema
+        type: Number
+        // type: TicketSchema
     }
 })
-var ToursModel = mongoose.model('Tours', ToursSchema)
-module.exports = ToursModel
+var toursModel = mongoose.model('Tours', toursSchema)
+module.exports = toursModel
+
+
+
+
+
+
+
