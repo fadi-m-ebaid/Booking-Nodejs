@@ -52,8 +52,11 @@ const bookingSchema = new mongoose.Schema({
     customerEmail: { type: String, required: true },
     //customerMobile: { type: Number, required: true },
     paymentStatus: { type: String, default: 'pending' },
-    paymentId: { type: String },
-    createdAt: { type: Date, default: Date.now },
-});
+    // paymentId: { type: String },
+    // createdAt: { type: Date, default: Date.now },
+
+}, {timestamps:true}
+
+);
 
 module.exports = mongoose.model('Booking', bookingSchema);
