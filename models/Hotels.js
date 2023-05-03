@@ -193,7 +193,7 @@ const roomsModel = require("../models/Rooms");
 
 const hotelsSchema = mongoose.Schema({
   CityId: {
-      type: mongoose.SchemaTypes.ObjectId, ref: 'Cities'
+    type: mongoose.SchemaTypes.ObjectId, ref: 'Cities'
   },
   name: {
     type: String,
@@ -207,18 +207,18 @@ const hotelsSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-        City: {
-          type: String,
-          required: true,
-        },
+  City: {
+    type: String,
+    required: true,
+  },
   ARCity: {
     type: String,
     required: true,
   },
-        Street: {
-          type: String,
-          required: true,
-        },
+  Street: {
+    type: String,
+    required: true,
+  },
   ARStreet: {
     type: String,
     required: true,
@@ -280,7 +280,7 @@ const hotelsSchema = mongoose.Schema({
     type: String,
     required: false,
   },
-  
+
   HotelImg: {
     type: String,
     required: false,
@@ -304,12 +304,14 @@ const hotelsSchema = mongoose.Schema({
     },
   },
   hotelrooms:
-  [{roomtype:{type: mongoose.SchemaTypes.ObjectId,ref: "Rooms"},
-  Name:String,
-  ARName:String,
-  RoomPrice: Number,
-   RoomCount: Number,
-   roomNumbers: [{ Price: Number, unavailableDates: {type: [Date]}}],  }]
+    [{
+      roomtype: { type: mongoose.SchemaTypes.ObjectId, ref: "Rooms" },
+      Name: String,
+      ARName: String,
+      RoomPrice: Number,
+      RoomCount: Number,
+      roomNumbers: [{ Price: Number, unavailableDates: { type: [Date] } }],
+    }]
 },
 );
 
