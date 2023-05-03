@@ -69,7 +69,7 @@ app.use('/rooms', roomsRoute);
 app.use('/activities', activitiesRoute);
 app.use('/tours', tourRoute);
 app.use('/booking', bookingRout);
-app.use('/booking/payment', paymentRout)
+app.use('/payment', paymentRout)
 app.use('/logout', logoutRout)
 
 app.use('*', (req, res, next) => {

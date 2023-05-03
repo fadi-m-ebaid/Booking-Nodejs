@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const stripe = require('stripe')('pk_test_51N1oJNAB87pT1j76v4i0wDIhdsHyVzCkxlSwF4CcqbFA9MkLuIhHn76EU0GkDcnRPy1SlqmcaC9ztybp0zNste0700MKFBzuRL');
+const stripe = require('stripe')('sk_test_51N1oJNAB87pT1j76u6VlN7TIj61Cp0bjPABlcdeFEWnq8xmB6XmvKgXR3lVevvIicu0dnDCddHZnqlrz1vAHlhmA00IdWHLzOE');
 const uuid = require('uuid')
 const Booking = require("../models/Booking")
 const Payment = require('../models/payment');
@@ -9,7 +9,7 @@ dotenv.config({ path: 'config.env' });
 
 router.post('/', async (req, res) => {
     const { bookingId, token } = req.body;
-    const itemPotencyKey = uuid()
+    //const itemPotencyKey = uuid()
     try {
         const booking = await Booking.findById(bookingId);
 
@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
             currency: 'usd',
             source: token.id,
             description: `Payment for ${booking.hotelData.name} booking`,
-        }, {itemPotencyKey});
+        },);
 
         const payment = new Payment({
             bookingId,

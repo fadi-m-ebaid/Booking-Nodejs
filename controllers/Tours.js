@@ -10,12 +10,12 @@ return  toursModel.create(tour);
 // getTourById ???????
 function getTourById(id)
 {
-    return toursModel.findById(id);
+    return toursModel.findById(id).populate("City");
 }
 
 function getTour()
 {
-    return toursModel.find();
+    return toursModel.find().populate("City");
 }
 
 function deleteTour(id)
