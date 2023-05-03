@@ -18,6 +18,7 @@ var hotelsRoute = require('./routes/Hotels');
 var roomsRoute = require('./routes/rooms');
 var bookingRout = require('./routes/booking')
 var paymentRout = require ('./routes/payment')
+var logoutRout = require ('./routes/logout')
 const multer = require('multer')
 const bodyparser = require('body-parser');
 const path = require('path');
@@ -65,6 +66,7 @@ app.use('/Hotels', hotelsRoute);
 app.use('/rooms', roomsRoute);
 app.use('/booking', bookingRout);
 app.use('/booking/payment', paymentRout)
+app.use('/logout', logoutRout)
 
 app.use('*', (req, res, next) => {
   res.status(404).end('not found');
