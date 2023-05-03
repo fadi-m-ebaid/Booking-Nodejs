@@ -40,6 +40,9 @@ var usersSchema = mongoose.Schema(
     isActive:
     {
       type: Boolean,
+    },
+    userImg:{
+      type: String,
     }
     // roleId: {
     //     type: mongoose.SchemaType.ObjectId,
