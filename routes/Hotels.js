@@ -9,7 +9,7 @@ const path = require('path');
 
 
 const hotelsModel = require('../models/Hotels');
-
+const citiesModel = require('../models/Cities');
 const fileSizeFormatter = (bytes, decimal) => {
   if (bytes === 0) {
     return '0 Bytes';
@@ -31,105 +31,25 @@ var {
   countByCity,
   searchByCity,
 } = require('../controllers/Hotels');
-
-// var storage = multer.diskStorage({
-//   destination:function(req,file,cb){
-//     cb(null,"uploads");
-//   },
-//   filename: function (req,file,cb){
-//     cb(null, Date.now() + path.extname(file.originalname));
-//   }
-// })
-
-// var upload = multer({storage:storage}).single('file')
-
-
-
-router.post('/', async (req, res)=> {
-  //done
-  // var hotel = req.body;
-  // upload(req,res, (err)=>{
-  //   if(err){
-  //     console.log(err)
-  //   }
-  //   console.log(req.file.path)
-  // })
-
+router.post('/', async (req, res, next) => {
   try {
+    var hotel = req.body;
+    var Hotelsbycity = req.body.CityId;
+    
+    // Update the hotelsCount field in the cities collection
+    await citiesModel.findOneAndUpdate(
+      { _id: Hotelsbycity },
+      { $inc: { hotelsCount: 1 } }
+    );
+    
+    // Create the new hotel
     var savedHotel = await createHotel(hotel);
     res.status(201).json(savedHotel);
   } catch (err) {
-    console.log(err)
     res.status(422).json({ message: err.message });
-  }})
-  // router.post('/', async (req, res, next) => {
-//   //done
-//   var hotel = req.body;
-//   try {
-//     var savedHotel = await createHotel(hotel);
-//     res.status(201).json(savedHotel);
-//   } catch (err) {
-//     res.status(422).json({ message: err.message });
-//   }
-// });
+  }
+});
 
-//CREATE PRODUCTOR
-// exports.createHotel = (req, res) => {
-//   console.log(req.files);
-//   const filesPath = [];
-//   const filesArray = [];
-//   req.files.forEach((element) => {
-//     const file = {
-//       fileName: element.originalname,
-//       filePath: element.path,
-//       fileType: element.mimetype,
-//       fileSize: fileSizeFormatter(element.size, 2), //size be the half
-//     };
-//     filesArray.push(file);
-//     filesPath.push(element.path);
-//   });
-//   const multipleFiles = new MultipleFile({
-//     files: filesArray,
-//   });
-//   multipleFiles.save();
-//   const totalprice =
-//     req.body.SSRoomPrice - (req.body.SSRoomPrice * req.body.discount) / 100;
-//   const hotelAlreadyExists = hotelsModel.findOne({ name: req.name });
-//   if (hotelAlreadyExists.name) {
-//     res.status(404).send({ message: 'Hotel already exists' });
-//   } else {
-//     console.log(req.body);
-//     const newHotel = new Hotels({
-//       name: req.body.name,
-//       // arname: req.body.arname,//
-//       // sellerId: req.user.id,
-//       RoomID: req.RoomID,
-//       imagePath: filesPath, //
-//       location: req.body.location,
-//       Address: req.body.Address,
-//       Facilities: req.body.Facilities,
-//       Availability: req.body.Availability,
-//       // arcategory: req.body.arcategory,//
-//       HotelDescription: req.body.HotelDescription,
-//       // arsubcategory: req.body.arsubcategory,//
-//       NofRooms: req.body.NofRooms,
-//       // ardescription: req.body.description,//
-//       HotelInfo: req.body.HotelInfo,
-//       SSRoomPrice: req.body.SSRoomPrice,
-//     });
-    //////////////////
-//     console.log(newHotel, 'yyyyy');
-//     newHotel
-//       .save()
-//       .then((savedHotel) => {
-//         console.log(savedHotel);
-//         res.status(200).send(savedHotel);
-//       })
-//       .catch((err) => {
-//         res.status(401).send({ message: 'something wrong' });
-//       });
-//   }
-// };
 
 router.get('/', async (req, res, next) => {
   //done
@@ -175,19 +95,7 @@ router.patch('/:id', async (req, res) => {
     res.json({ message: err.message });
   }
 });
-// router.put('/availability/:id', async (req, res, next) => {
-//   //done
-//   // var room = req.body;
-//   try {
-//     await hotelsModel.updateOne(
-//       { 'hotelrooms.roomNumbers._id': req.params.id },
-//       { $push: {'hotelrooms.roomNumbers.$.unavailableDates': req.body.dates } }
-//     );
-//     res.status(200).json('Room status has been updated.');
-//   } catch (err) {
-//     res.status(422).json({ message: err.message });
-//   }
-// });
+
 router.put('/availability/:id', async (req, res, next) => {
   try {
     await hotelsModel.updateOne(

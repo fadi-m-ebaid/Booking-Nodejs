@@ -19,7 +19,9 @@ var citiesSchema = mongoose.Schema({
     zipIpCode: {
         type: Number,
         required: false
-    }
+    },
+    hotelsCount:
+     {type:Number}
 })
 var citiesModel = mongoose.model('Cities', citiesSchema)
 module.exports = citiesModel

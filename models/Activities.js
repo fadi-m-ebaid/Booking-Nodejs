@@ -1,12 +1,16 @@
 var mongoose = require("mongoose")
 var activitiesSchema = mongoose.Schema({
+    City: {
+        type: mongoose.SchemaTypes.ObjectId, ref: 'Cities',
+        required: false
+    },
     Name: {
         type: String,
-        required: true
+        required: false
     },
     Title: {
         type: String,
-        required: true
+        required: false
     },
     WhyVisit: {
         type: [String],
@@ -14,19 +18,19 @@ var activitiesSchema = mongoose.Schema({
     },
     Description: {
         type: String,
-        required: true
+        required: false
     },
     Included: {},
     Restrictions: {
         type: String,
-        required: true
+        required: false
     },
     TicketPrice: {
         type: Object,
-        required: true,
+        required: false,
         Adult: {
             type: Number,
-            required: true
+            required: false
         },
         Child: {
             type: Number,
@@ -35,26 +39,26 @@ var activitiesSchema = mongoose.Schema({
     },
     Images: {
         type: [String],
-        require: true
+        require: false
     },
     MainImage: {
         type: [String],
-        required: true
+        required: false
     },
     Address: {
         type: Object,
-        required: true,
+        required: false,
         Country: {
             type: String,
-            required: true
+            required: false
         },
         City: {
             type: String,
-            required: true
+            required: false
         },
         Street: {
             type: String,
-            required: true
+            required: false
         }
     },
     Duration: {

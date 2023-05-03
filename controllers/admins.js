@@ -10,8 +10,8 @@ function createAdmin(Admin) {
   return adminsModel.create(Admin);
 }
 
-function getAdmin(id) {
-  return adminsModel.find(id);
+function getAdmin() {
+  return adminsModel.find();
 }
 
 function deleteAdmin(id) {
