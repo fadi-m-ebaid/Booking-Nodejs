@@ -15,7 +15,7 @@ function getReservation(id) {
 }
 
 function getReservationByUser(userId) {
-    return bookingModel.find({ "customerId": userId }).populate("customerId");
+    return bookingModel.find({ "customerId": userId }).populate("customerId").populate("hotelData");
 }
 
 function deleteReservation(id) {

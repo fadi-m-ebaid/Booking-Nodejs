@@ -44,12 +44,16 @@ const mongoose = require('mongoose');
 
 const bookingSchema = new mongoose.Schema({
     hotelData: { type: mongoose.SchemaTypes.ObjectId, ref: "Hotels" },
-    // checkInDate: { type: Date, required: true },
-    // checkOutDate: { type: Date, required: true },
+    checkInDate: { type: Date },
+    checkOutDate: { type: Date },
     totalCost: { type: Number, required: true },
     customerName: { type: String, required: true },
     customerEmail: { type: String, required: true },
-    customerId: { type: mongoose.SchemaTypes.ObjectId, ref: "users" },
+    customerId: {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: "users",
+        required : false
+    },
     //customerMobile: { type: Number, required: true },
     paymentStatus: { type: String, default: 'pending' },
     // paymentId: { type: String },

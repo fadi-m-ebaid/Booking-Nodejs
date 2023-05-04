@@ -44,12 +44,10 @@ var usersSchema = mongoose.Schema(
     },
     userImg: {
       type: String,
+      default: "https://www.w3schools.com/howto/img_avatar.png"
     },
-    userReservations: {
-      type: [String]
-    }
   },
- 
+
   // roleId: {
   //     type: mongoose.SchemaType.ObjectId,
   //     required: true,
