@@ -44,18 +44,18 @@ const mongoose = require('mongoose');
 
 const bookingSchema = new mongoose.Schema({
     hotelData: { type: mongoose.SchemaTypes.ObjectId, ref: "Hotels" },
-    //hotelName: { type: String, required: true },
     // checkInDate: { type: Date, required: true },
     // checkOutDate: { type: Date, required: true },
     totalCost: { type: Number, required: true },
     customerName: { type: String, required: true },
     customerEmail: { type: String, required: true },
+    customerId: { type: mongoose.SchemaTypes.ObjectId, ref: "users" },
     //customerMobile: { type: Number, required: true },
     paymentStatus: { type: String, default: 'pending' },
     // paymentId: { type: String },
     // createdAt: { type: Date, default: Date.now },
 
-}, {timestamps:true}
+}, { timestamps: true }
 
 );
 

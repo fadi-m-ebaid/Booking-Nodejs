@@ -12,45 +12,51 @@ var usersSchema = mongoose.Schema(
       unique: false,
     },
     userPhone: {
-        type: Number,
-       required: false,
-        unique: false
+      type: Number,
+      required: false,
+      unique: false
     },
     userEmail: {
-        type: String,
-        required: true,
-        unique: true,
-        // validate: {
-        //     validator: function (emailValue) {
-        //         return /^[a-zA-Z0-9._%+-]{3,20}(@)(gmail|yahoo|outlook)(.com)$/.test(emailValue);
-        //     },
-        //     message: props => {
-        //         console.log(props);
-        //         return `${props.value} is not a valid email !`
-        //     }
-        // }
+      type: String,
+      required: true,
+      unique: true,
+      // validate: {
+      //     validator: function (emailValue) {
+      //         return /^[a-zA-Z0-9._%+-]{3,20}(@)(gmail|yahoo|outlook)(.com)$/.test(emailValue);
+      //     },
+      //     message: props => {
+      //         console.log(props);
+      //         return `${props.value} is not a valid email !`
+      //     }
+      // }
     },
     userAddress: {
-        type: String,
-       required: false
+      type: String,
+      required: false
     },
     dob: {
-        type: Date,
+      type: Date,
     },
     isActive:
     {
       type: Boolean,
+      default: true
     },
-    userImg:{
+    userImg: {
       type: String,
+    },
+    userReservations: {
+      type: [String]
     }
-    // roleId: {
-    //     type: mongoose.SchemaType.ObjectId,
-    //     required: true,
-    //     unique: true,
-    //     ref: 'role'
-    // }
   },
+ 
+  // roleId: {
+  //     type: mongoose.SchemaType.ObjectId,
+  //     required: true,
+  //     unique: true,
+  //     ref: 'role'
+  // }
+
   { timestamps: true }
 );
 

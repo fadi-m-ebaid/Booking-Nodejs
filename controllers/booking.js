@@ -14,6 +14,10 @@ function getReservation(id) {
     return bookingModel.findById(id).populate("hotelData");
 }
 
+function getReservationByUser(userId) {
+    return bookingModel.find({ "customerId": userId }).populate("customerId");
+}
+
 function deleteReservation(id) {
     return bookingModel.findByIdAndDelete(id);
 }
@@ -26,4 +30,4 @@ function searchByUserEmail(email) {
     return bookingModel.find({ 'customerEmail': email })
 }
 
-module.exports = { addReservation, getAllReservations, getReservation, deleteReservation, updateReservation, searchByUserEmail }
+module.exports = { addReservation, getReservationByUser, getAllReservations, getReservation, deleteReservation, updateReservation, searchByUserEmail }
